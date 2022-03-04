@@ -2,6 +2,10 @@
 on:
   workflow_dispatch: {}
   push: {}
+
+env:
+  project_name: LumbarPunctureMR
+
 jobs:
   activation:
     name: Build appx
@@ -15,13 +19,9 @@ jobs:
     - uses: microsoft/setup-msbuild@v1.1
     - run: curl -L https://www.dropbox.com/s/sfoc8dkllc3lsnw/Builds.zip?dl=0 --output a.zip && unzip a.zip
     - working-directory: Builds
-      run: msbuild .
-#    - name: Restore dependencies
-#      working-directory: LumbarPunctureMR-Hololens2
-#      run: dotnet restore
-#    - name: Build
-#      working-directory: LumbarPunctureMR-Hololens2
-#      run: dotnet build --no-restore
-#    - name: Test
-#      working-directory: LumbarPunctureMR-Hololens2
-#      run: dotnet test --no-build --verbosity normal
+      run: msbuild /m /t:build /p:Configuration=Release /p:Platform=ARM64
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+       name: ${{ env.project_name }}-Hololens2-AppX
+       path: Builds/AppPackages
