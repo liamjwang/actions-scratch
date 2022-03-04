@@ -1,10 +1,11 @@
 ﻿name: Build appx
 on:
   workflow_dispatch: {}
+  push: {}
 jobs:
   activation:
     name: Build appx
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
     container: unityci/editor:windows-2020.3.26f1-windows-il2cpp-0.17.2
     steps:
       #    - name: Download Artifact
