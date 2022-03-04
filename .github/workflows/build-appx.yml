@@ -5,6 +5,7 @@ jobs:
   activation:
     name: Build appx
     runs-on: windows-2019
+    container: unityci/editor:windows-2020.3.26f1-windows-il2cpp-0.17.2
     steps:
       #    - name: Download Artifact
       #      uses: actions/download-artifact@v1
