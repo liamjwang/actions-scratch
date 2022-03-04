@@ -12,7 +12,7 @@ jobs:
       - uses: crazy-max/ghaction-chocolatey@v1
         with:
           args: install unity-hub --no-progress -y
-      - run: "C:/Program Files/Unity Hub/Unity Hub.exe" -- --headless install --version 2020.3.26f1
+      - run: \"C:/Program Files/Unity Hub/Unity Hub.exe\" -- --headless install --version 2020.3.26f1
       #    - name: Download Artifact
       #      uses: actions/download-artifact@v1
       #      with:
