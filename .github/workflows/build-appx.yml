@@ -2,6 +2,10 @@
 on:
   workflow_dispatch: {}
   push: {}
+
+env:
+  unity_version: "2020.3.26f1"
+
 jobs:
   activation:
     name: Build appx
@@ -9,10 +13,17 @@ jobs:
 #    runs-on: ubuntu-latest
 #    container: unityci/editor:windows-2020.3.26f1-windows-il2cpp-0.17.2
     steps:
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: "C:/Program Files/Unity Hub"
+          key: ${{ runner.os }}-${{ env.unity_version }}
       - uses: crazy-max/ghaction-chocolatey@v1
+        if: steps.cache.outputs.cache-hit != 'true'
         with:
           args: install unity-hub --no-progress -y
-      - run: "& \"C:/Program Files/Unity Hub/Unity Hub.exe\" -- --headless install --version 2020.3.26f1 --changeset 7298b473bc1a | Out-Default"
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: "& \"C:/Program Files/Unity Hub/Unity Hub.exe\" -- --headless install --version 2020.3.26f1 --changeset 7298b473bc1a | Out-Default"
       #    - name: Download Artifact
       #      uses: actions/download-artifact@v1
       #      with:
