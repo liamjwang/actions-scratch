@@ -1,0 +1,18 @@
+﻿name: Build appx
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Build appx
+    runs-on: windows-2019
+    steps:
+      #    - name: Download Artifact
+      #      uses: actions/download-artifact@v1
+      #      with:
+      #       name: LumbarPunctureMR-Hololens2
+      #       path: ./
+      - uses: microsoft/setup-msbuild@v1.1
+#      - run: curl -L https://www.dropbox.com/s/lzdnlnu8rmhkn24/LumbarPunctureMR-Hololens2.zip?dl=0 --output a.zip && unzip a.zip
+#      - working-directory: LumbarPunctureMR-Hololens2
+#        run: msbuild .
+      - run: cat "C:\Program Files\Unity\Hub\Editor\2020.3.26f1\Editor\Data\PlaybackEngines\MetroSupport\Players\UAP\il2cpp\ARM\Debug\baselib.dll"
