@@ -6,7 +6,7 @@ jobs:
   activation:
     name: Build appx
     runs-on: ubuntu-latest
-    container: unityci/editor:windows-2020.3.26f1-windows-il2cpp-0.17.2
+#    container: unityci/editor:windows-2020.3.26f1-windows-il2cpp-0.17.2
     steps:
       - uses: crazy-max/ghaction-chocolatey@v1
         with:
