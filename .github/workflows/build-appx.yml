@@ -18,6 +18,7 @@ jobs:
 #       path: ./
     - uses: microsoft/setup-msbuild@v1.1
     - run: curl -L https://www.dropbox.com/s/sfoc8dkllc3lsnw/Builds.zip?dl=0 --output a.zip && unzip a.zip
+    - run: dir -r
     - working-directory: Builds
       run: msbuild /m /t:build /p:Configuration=Release /p:Platform=ARM64
     - name: Upload artifacts
